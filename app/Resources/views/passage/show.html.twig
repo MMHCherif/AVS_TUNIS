@@ -1,0 +1,52 @@
+{% extends 'default/base.html.twig' %}
+
+{% block body %}
+    <h1>Passage</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ passage.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ passage.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ passage.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Numbillet</th>
+                <td>{{ passage.numBillet }}</td>
+            </tr>
+            <tr>
+                <th>Numvol</th>
+                <td>{{ passage.numVol }}</td>
+            </tr>
+            <tr>
+                <th>Numpasseport</th>
+                <td>{{ passage.numPasseport }}</td>
+            </tr>
+            <tr>
+                <th>Datepassage</th>
+                <td>{% if passage.datePassage %}{{ passage.datePassage|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('passage_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('passage_edit', { 'id': passage.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

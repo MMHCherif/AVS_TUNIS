@@ -1,0 +1,66 @@
+{% extends 'default/base.html.twig' %}
+
+{% block body %}
+
+        
+            <div class="row">
+                    <div class="col text-center">
+                        <div class="section_title new_arrivals_title">
+                            <h4>liste des clients</h4>
+                        </div>
+                    </div>
+            </div>
+
+        
+        
+    <br><br><br>
+    <div class="row">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Tel</th>
+                <th>Mail</th>
+                <th>Pays</th>
+                <th>Matricule</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>{{ client.adresse }}</td>
+                <td>{{ client.tel }}</td>
+                <td>{{ client.mail }}</td>
+                <td>{{ client.pays }}</td>
+                <td>{{ client.matricule }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('client_show', { 'id': client.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('client_new') }}">Create a new client</a>
+        </li>
+    </ul>
+
+{% endblock %}
+

@@ -1,0 +1,49 @@
+{% extends 'default/base.html.twig' %}
+
+{% block body %}
+    <h1>Passages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Numbillet</th>
+                <th>Numvol</th>
+                <th>Numpasseport</th>
+                <th>Datepassage</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for passage in passages %}
+            <tr>
+                <td><a href="{{ path('passage_show', { 'id': passage.id }) }}">{{ passage.id }}</a></td>
+                <td>{{ passage.nom }}</td>
+                <td>{{ passage.prenom }}</td>
+                <td>{{ passage.numBillet }}</td>
+                <td>{{ passage.numVol }}</td>
+                <td>{{ passage.numPasseport }}</td>
+                <td>{% if passage.datePassage %}{{ passage.datePassage|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('passage_show', { 'id': passage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('passage_edit', { 'id': passage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('passage_new') }}">Create a new passage</a>
+        </li>
+    </ul>
+{% endblock %}
